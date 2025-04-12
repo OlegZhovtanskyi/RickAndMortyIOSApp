@@ -11,12 +11,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    // MARK: - Scene Initialisation
+    // This method sets up the main window of the iOS application
+    //
+    // Purpose:
+    // - Configures the initial window when the app launches
+    // - Creates and sets the root view controller
+    //
+    // How to use:
+    // - Automatically called by the system when the app starts
+    // - Part of the UIWindowSceneDelegate protocol
+    //
+    // Parameters:
+    // - scene: The scene being connected to the session
+    // - session: The scene session for the app
+    // - connectionOptions: Additional options for scene connection
+    //
+    // Key steps:
+    // 1. Verify the scene is a UIWindowScene
+    // 2. Create the main view controller
+    // 3. Initialise the app window
+    // 4. Set the root view controller
+    // 5. Make the window visible
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let vc = RMTabBarViewController()
+        
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
